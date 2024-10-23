@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiscalização de cidadania</title>
+</head>
+<body>
+    <h1>Fiscalização</h1>
+    Insira seu país de origem:<input type="text" name="país" id="país">
+    <input type="button" value="Verificar" onclick="Verificar()">
+    <div id="res">
+
+    </div>
+    <script>
+        function Verificar(){
+            var país = window.document.querySelector('input#país').value
+            var res = window.document.querySelector('div#res')
+            res.innerHTML = `Vivendo em ${país}`
+            if (país == 'Brasil'){
+                res.innerHTML = ('Você é Brasileiro!')
+            }else{
+                res.innerHTML = ('Você é Estrangeiro!')
+            }
+        }
+            
+    </script>
+</body>
+</html>
