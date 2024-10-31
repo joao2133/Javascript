@@ -14,6 +14,14 @@ function isNumero(n){
     }
 }
 
+/*
+num.value é uma forma de acessar o que o usuário digitou no campo de entrada e é fundamental para capturar a entrada do usuário em aplicações web. É importante lembrar que o valor é retornado como uma string, e a conversão pode ser necessária para cálculos e outras operações numéricas.
+
+* */
+
+
+
+
 
 
 /*
@@ -52,7 +60,23 @@ else: Se n não estiver na lista, indexOf() será -1, e a condição será false
 //adiciona o número no array valores caso ele passe nas verificações
 function adicionar(){
    if (isNumero(num.value) & !inLista(num.value, valores)){
-    
+        //adiciona o número ao array 'valores']
+        valores.push(Number(num.value)) //Converte o valor para número e o adiciona ao array valores.
+
+        //Cria um novo item para o elemento 'select' e adiciona o número
+        let item = document.createElement('option') //Cria um novo item de lista (<option>) para o select e define o texto para mostrar o número adicionado.
+
+        item.text = `Valor ${num.value} adicionado`
+        lista.appendChild(item)    //Adiciona o novo item ao select
+
+        //appendChild é um método que coloca um novo elemento como último filho de outro elemento
+
+        //Limpa o campo de entrada e foca nele para o proximo número
+        num.value = ''
+        num.focus()//num.focus(): Coloca o cursor de volta no campo de entrada <input>
+
+        //Limpa o resultado, pois a lista foi atualizada
+        res.innerHTML = ''
    }else{
     window.alert('Valor inválido ou já encontrado na lista')
    }
@@ -60,5 +84,21 @@ function adicionar(){
 
 
 function finalizar(){
+    if (valores.length == 0){
+        window.alert('Adicione valores para finalizar!')
+    }else{
+        let total = valores.length
+        let maior = math.max(valores) //Encontra o maior valor
+        let menor = math.min(valores) //Encontra o menor valor
+        let soma = valores.reduce((acc, val) => acc + val, 0) // soma todos os números
+        let media = soma / total //Calcula a média
 
+        //Exibe o resultado na div 'res'
+        res.innerHTML = ''
+        res.innerHTML = `<p>Total de números cadastrados: ${total}</p>`
+        res.innerHTML = `<p>O maior número informado foi ${maior}</p>`
+        res.innerHTML = `<p>O menor número informado foi ${menor}</p>`
+        res.innerHTML = `<p>A soma de todos os valores é ${media}</p>`
+        res.innerHTML = `<p>A media de todos os valores é ${media}</p>`
+    }
 }
